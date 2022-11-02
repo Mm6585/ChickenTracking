@@ -23,7 +23,6 @@ class DB:
         return self.ref.child(self.today).child(str(id)).child(c).get()
 
     def cal_aoa(self, id, x2, y2):
-        aoa = 0
         x1 = self.get_prev_coor(str(id), 'x')
         if (x1 != None):
             y1 = self.get_prev_coor(str(id), 'y')
@@ -31,6 +30,8 @@ class DB:
             aoa += measure_dist(x1, y1, x2, y2)
         else:
             aoa = self.ref.child(self.today).child('aoa').get()
+            if (aoa == None):
+                aoa = 0
         
         return aoa
 
