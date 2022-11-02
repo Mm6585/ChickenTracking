@@ -29,6 +29,8 @@ class DB:
             y1 = self.get_prev_coor(str(id), 'y')
             aoa = self.ref.child(self.today).child('aoa').get()
             aoa += measure_dist(x1, y1, x2, y2)
+        else:
+            aoa = self.ref.child(self.today).child('aoa').get()
         
         return aoa
 
