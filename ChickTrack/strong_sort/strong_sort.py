@@ -56,7 +56,6 @@ class StrongSORT(object):
             metric, max_iou_distance=max_iou_distance, max_age=max_age, n_init=n_init)
 
         self.db = DB(user_id)   ###
-        self.user_id = user_id  ###
 
     def update(self, bbox_xywh, confidences, classes, ori_img):
         self.height, self.width = ori_img.shape[:2]
@@ -87,7 +86,7 @@ class StrongSORT(object):
             cx, cy = (x1+x2)/2, (y1+y2)/2   ###
             conf = track.conf
             outputs.append(np.array([x1, y1, x2, y2, track_id, conf]))    ###
-            self.db.update_db(self.user_id, cx, cy) ###
+            self.db.update_db(track_id, cx, cy) ###
         if len(outputs) > 0:
             outputs = np.stack(outputs, axis=0)
         return outputs
