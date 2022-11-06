@@ -81,12 +81,13 @@ class StrongSORT(object):
 
             box = track.to_tlwh()
             x1, y1, x2, y2 = self._tlwh_to_xyxy(box)
+            box2 = abs(x1-x2) * abs(y1-y2)
             
             track_id = track.track_id
             cx, cy = (x1+x2)/2, (y1+y2)/2   ###
             conf = track.conf
             outputs.append(np.array([x1, y1, x2, y2, track_id, conf]))    ###
-            self.db.update_db(track_id, cx, cy) ###
+            self.db.update_db(track_id, cx, cy, box2) ###
         if len(outputs) > 0:
             outputs = np.stack(outputs, axis=0)
         return outputs
