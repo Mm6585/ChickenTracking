@@ -19,15 +19,23 @@ class DB:
         self.ref = db.reference('/' + user_id)
         self.today = str(datetime.today()).split()[0].replace('-', '')
 
-    def get_prev_coor(self, id, c):
-        return self.ref.child(self.today).child(str(id)).child(c).get()
+    def get_prev_data(self, id):
+        data = self.ref.child(self.today).child(str(id)).get()
+        if (data == None):
+            x1 = 0
+            y1 = 0
+            box1 = 0
+        else:
+            x1 = data['x']
+            y1 = data['y']
+            box1 = data['box']
+        return x1, y1, box1
 
-    def cal_aoa(self, id, x2, y2):
-        x1 = self.get_prev_coor(str(id), 'x')
-        if (x1 != None):
-            y1 = self.get_prev_coor(str(id), 'y')
+    def cal_aoa(self, id, x2, y2, box2):
+        x1, y1, box1 = self.get_prev_data(str(id))
+        if (box1 != 0):
             aoa = self.ref.child(self.today).child('aoa').get()
-            aoa += measure_dist(x1, y1, x2, y2)
+            aoa += measure_dist(x1, y1, x2, y2, box1, box2)
         else:
             aoa = self.ref.child(self.today).child('aoa').get()
             if (aoa == None):
@@ -35,18 +43,28 @@ class DB:
         
         return aoa
 
-    def update_db(self, id, x2, y2):
-        aoa = self.cal_aoa(id, x2, y2)
-        self.ref.child(self.today).child(str(id)).child('x').set(x2)
-        self.ref.child(self.today).child(str(id)).child('y').set(y2)
+    def update_db(self, id, x2, y2, box2):
+        aoa = self.cal_aoa(id, x2, y2, box2)
+        data = {
+            'x': x2,
+            'y': y2,
+            'box': box2,
+        }
+        self.ref.child(self.today).child(str(id)).set(data)
         self.ref.child(self.today).child('aoa').set(aoa)
 
-    def init_aoa(self):
-        days = self.ref.child('aoa').get()
-        if (days[-1] != self.today):
-            self.ref.child('aoa').child(self.today).set(0)
-
     def cal_avg_aoa(self):
-        aoa = self.ref.child('aoa').child(self.today).get()
+        aoa = self.ref.child(self.today).child('aoa').get()
         n = len(self.ref.get()) - 1
-        self.ref.child('aoa').child(self.today).set(aoa/n)
+        self.ref.child(self.today).child('aoa').set(aoa/n)
+
+    def get_scaling_data(self, period):
+        days = self.ref.get()[:-period]
+        aoa_list = list()
+
+        for day in days:
+            aoa_list.append(self.ref.child(day).child('aoa').get())
+
+        scaling_data = [((i-min(aoa_list))/(max(aoa_list)-min(aoa_list))+0.01) for i in aoa_list]
+
+        return scaling_data
