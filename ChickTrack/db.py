@@ -19,43 +19,52 @@ class DB:
         self.ref = db.reference('/' + user_id)
         self.today = str(datetime.today()).split()[0].replace('-', '')
 
-    def get_prev_data(self, id):
-        data = self.ref.child(self.today).child(str(id)).get()
-        if (data == None):
-            x1 = 0
-            y1 = 0
-            box1 = 0
-        else:
-            x1 = data['x']
-            y1 = data['y']
-            box1 = data['box']
-        return x1, y1, box1
+    def is_prev_None(self):
+        prev_data = self.ref.child(self.today).get()
+        if (prev_data != None):
+            del prev_data['aoa']
 
-    def cal_aoa(self, id, x2, y2, box2):
-        x1, y1, box1 = self.get_prev_data(str(id))
-        if (box1 != 0):
-            aoa = self.ref.child(self.today).child('aoa').get()
-            aoa += measure_dist(x1, y1, x2, y2, box1, box2)
+        if (len(prev_data) == 0):
+            return True, None
         else:
-            aoa = self.ref.child(self.today).child('aoa').get()
-            if (aoa == None):
-                aoa = 0
-        
+            return False, prev_data
+
+    def cal_aoa(self, cur_data, is_prev_none, prev_data):
+        aoa = 0
+
+        if (is_prev_none):
+            return 0
+        else:
+            for id in cur_data:
+                if (id in prev_data):
+                    x1, y1, box1 = prev_data[id]['x'], \
+                                    prev_data[id]['y'], \
+                                    prev_data[id]['box']
+                    x2, y2, box2 = cur_data[id]['x'], \
+                                    cur_data[id]['y'], \
+                                    cur_data[id]['box']
+                    aoa += measure_dist(x1, y1, x2, y2, box1, box2)            
         return aoa
 
-    def update_db(self, id, x2, y2, box2):
-        aoa = self.cal_aoa(id, x2, y2, box2)
-        data = {
-            'x': x2,
-            'y': y2,
-            'box': box2,
-        }
-        self.ref.child(self.today).child(str(id)).set(data)
+    def update_db(self, data):
+        is_prev_none, prev_data = self.is_prev_None()
+
+        aoa = self.cal_aoa(data, is_prev_none, prev_data)
+        prev_aoa = self.ref.child(self.today).child('aoa').get()
+        if (prev_aoa == None):
+            prev_aoa = 0
+        aoa += prev_aoa
+
+        if (is_prev_none):
+            self.ref.child(self.today).set(data)
+        else:
+            self.ref.child(self.today).update(data)
         self.ref.child(self.today).child('aoa').set(aoa)
 
     def cal_avg_aoa(self):
-        aoa = self.ref.child(self.today).child('aoa').get()
-        n = len(self.ref.get()) - 1
+        data = self.ref.child(self.today).get()
+        aoa = data['aoa']
+        n = len(data) - 1
         self.ref.child(self.today).child('aoa').set(aoa/n)
 
     def get_scaling_data(self, period):
