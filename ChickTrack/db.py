@@ -23,11 +23,12 @@ class DB:
         prev_data = self.ref.child(self.today).get()
         if (prev_data != None):
             del prev_data['aoa']
-
-        if (len(prev_data) == 0):
-            return True, None
+            if (len(prev_data) == 0):
+                return True, None
+            else:
+                return False, prev_data
         else:
-            return False, prev_data
+            return True, None
 
     def cal_aoa(self, cur_data, is_prev_none, prev_data):
         aoa = 0
