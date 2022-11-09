@@ -42,7 +42,7 @@ Xcode 13.2.1  환경에서 구축하였으며 추가적으로 [iosDeviceSupport]
 > [SwiftUIChart](https://github.com/AppPear/ChartView)
 > [SwiftUIFontIcon](https://github.com/huybuidac/SwiftUIFontIcon)
 
-<img width="40%" alt="2" src="https://user-images.githubusercontent.com/71868697/200848386-9900b88a-6b6d-45b3-a825-1249f8215542.png"> &nbsp; &nbsp; &nbsp;<img width="40%" alt="1" src="https://user-images.githubusercontent.com/71868697/200848538-16333fc5-372b-4028-9835-a06f937fa8fa.png">
+<img width="40%" alt="2" src="https://user-images.githubusercontent.com/71868697/200848386-9900b88a-6b6d-45b3-a825-1249f8215542.png"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img width="40%" alt="1" src="https://user-images.githubusercontent.com/71868697/200848538-16333fc5-372b-4028-9835-a06f937fa8fa.png">
 
 
 ### Vue
