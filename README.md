@@ -1,12 +1,12 @@
 # 창의설계 경진대회 - ChickenTracking
-----------
+
 
 #### 바쁜 농부를 대신하여 닭의 행동을 관찰할 수 있는 AI 카메라를 만들어라!
 게이츠재단은 10만 마리의 닭을 아프리가 빈곤층에 나누어주는 사업을 하고있다.재단의 연구에 따르면 닭 약 40마리를 지속적으로 키우면 일년에 $1000을 벌 수 있어서,서아프리카의 빈곤선( $700/year )을 넘길 수 있다. 그러나 가난한 농가에서는 판매를 위한 닭의 품질을 일정하게 유지하게 힘들다. 이를 돕기위해 닭의 행동량을 자동으로 계산해주는 시스템을 개발하고자 한다.
 
 
 ## ChickTrack
------------
+
 
 ### AI
 
@@ -42,7 +42,7 @@ Xcode 13.2.1  환경에서 구축하였으며 추가적으로 [iosDeviceSupport]
 > [SwiftUIChart](https://github.com/AppPear/ChartView)
 > [SwiftUIFontIcon](https://github.com/huybuidac/SwiftUIFontIcon)
 
-<img width="40%" alt="2" src="https://user-images.githubusercontent.com/71868697/200848386-9900b88a-6b6d-45b3-a825-1249f8215542.png"><img width="40%" alt="1" src="https://user-images.githubusercontent.com/71868697/200848538-16333fc5-372b-4028-9835-a06f937fa8fa.png">
+<img width="40%" alt="2" src="https://user-images.githubusercontent.com/71868697/200848386-9900b88a-6b6d-45b3-a825-1249f8215542.png"> &nbsp; &nbsp; &nbsp;<img width="40%" alt="1" src="https://user-images.githubusercontent.com/71868697/200848538-16333fc5-372b-4028-9835-a06f937fa8fa.png">
 
 
 ### Vue
