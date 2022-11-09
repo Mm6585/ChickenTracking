@@ -14,7 +14,7 @@
 
 > Tracker는  occlusion과 ID switching 에 유리한 StrongSORT를 사용합니다 
 > StrongSORT는 SORT의 개량 모델인 DeepSORT의 개량 모델입니다
->TrainDataset : [Animals Detection Images Dataset by ANTOREEPJANA](https://www.kaggle.com/datasets/antoreepjana/animals-detection-images-dataset) , [Chicken Detection and Tracking Image Dataset](https://universe.roboflow.com/chickens/chicken-detection-and-tracking/dataset/12)
+> TrainDataset : [Animals Detection Images Dataset by ANTOREEPJANA](https://www.kaggle.com/datasets/antoreepjana/animals-detection-images-dataset) , [Chicken Detection > and Tracking Image Dataset](https://universe.roboflow.com/chickens/chicken-detection-and-tracking/dataset/12)
 
 
 
@@ -42,8 +42,8 @@ Xcode 13.2.1  환경에서 구축하였으며 추가적으로 [iosDeviceSupport]
 > [SwiftUIChart](https://github.com/AppPear/ChartView)
 > [SwiftUIFontIcon](https://github.com/huybuidac/SwiftUIFontIcon)
 
-<img width="200" alt="2" src="https://user-images.githubusercontent.com/71868697/200848386-9900b88a-6b6d-45b3-a825-1249f8215542.png">
-<img width="200" alt="1" src="https://user-images.githubusercontent.com/71868697/200848538-16333fc5-372b-4028-9835-a06f937fa8fa.png">
+<img width="40%" alt="2" src="https://user-images.githubusercontent.com/71868697/200848386-9900b88a-6b6d-45b3-a825-1249f8215542.png"><img width="40%" alt="1" src="https://user-images.githubusercontent.com/71868697/200848538-16333fc5-372b-4028-9835-a06f937fa8fa.png">
+
 
 ### Vue
 
