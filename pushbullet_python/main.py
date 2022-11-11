@@ -1,7 +1,7 @@
 from pushbullet import Pushbullet
 import db
 
-api_key = 'o.Us9crOXIPVZyMoVRVtAwGwjW6R4yeLhc'
+api_key = 'Pushbullet_API_key'
 pb = Pushbullet(api_key)
 
 introduce = '''
