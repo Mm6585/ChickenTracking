@@ -100,7 +100,7 @@ def run(
 
     # Dataloader
     if webcam:
-        show_vid = check_imshow()
+#         show_vid = check_imshow()
         cudnn.benchmark = True  # set True to speed up constant image size inference
         dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt)
         nr_sources = len(dataset)
@@ -242,7 +242,7 @@ def run(
             # Stream results
             im0 = annotator.result()
             if show_vid:
-                cv2.imshow(str(p), im0)
+#                 cv2.imshow(str(p), im0)
                 cv2.waitKey(1)  # 1 millisecond
 
             # Save results (image with detections)
