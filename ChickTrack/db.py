@@ -16,7 +16,7 @@ class DB:
         })
 
         # As an admin, the app has access to read and write all data, regradless of Security Rules
-        self.ref = db.reference('/' + user_id)
+        self.ref = db.reference('/Tracking/' + user_id)
         self.today = str(datetime.today()).split()[0].replace('-', '')
 
     def is_prev_None(self):
