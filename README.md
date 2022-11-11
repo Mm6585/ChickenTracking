@@ -15,8 +15,7 @@
 ### AI Tracker
 
 라즈베리파이를 사용해 카메라 모듈 또는 다른 카메라를 사용하여 영상을 획득하고 라즈베리파이 내부에서 객체 추적 프로그램을 구동합니다.</br>
-Detector는 실시간 객체 추적에 용이한 [yolov5](https://github.com/search?q=yolo)를 사용합니다.</br>
-
+> Detector는 실시간 객체 추적에 용이한 [yolov5](https://github.com/search?q=yolo)를 사용합니다.</br>
 > Tracker는  occlusion과 ID switching 에 유리한 StrongSORT를 사용합니다  
 > TrainDataset : [Animals Detection Images Dataset by ANTOREEPJANA](https://www.kaggle.com/datasets/antoreepjana/animals-detection-images-dataset) , [Chicken Detection > and Tracking Image Dataset](https://universe.roboflow.com/chickens/chicken-detection-and-tracking/dataset/12)
 
