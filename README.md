@@ -52,8 +52,11 @@ Xcode 13.2.1  환경에서 구축하였으며 추가적으로 [iosDeviceSupport]
 
 ### Pushbullet
 안드로이드 사용자에게 푸시 알림을 보내기 위해 Pushbullet을 사용합니다.</br>
-![image](https://user-images.githubusercontent.com/101806955/201338457-fb5f9f96-f576-48f7-b993-27acf8c52f88.png)</br>
+<div align="center">
+  ![image](https://user-images.githubusercontent.com/101806955/201338457-fb5f9f96-f576-48f7-b993-27acf8c52f88.png)
+</div></br>
 알림을 전송하기 위해서는 DB에 유저 정보를 추가해야 하고,</br>
 이를 위해서 수동으로 서비스 계정에 pushbullet 메시지를 보내야 합니다.</br>
 pushbullet_python의 main.py가 자동응답 봇의 역할을 수행합니다.</br>
-![image](https://user-images.githubusercontent.com/101806955/201338365-83d5938f-36e6-4452-b08c-4e8cccf973e1.png)</br>
+![image](https://user-images.githubusercontent.com/101806955/201338365-83d5938f-36e6-4452-b08c-4e8cccf973e1.png)
+</br>
