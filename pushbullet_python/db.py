@@ -2,10 +2,10 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
 
-cred = credentials.Certificate('./key/chicktrack-4ee59-firebase-adminsdk-1x60r-b6e29c727c.json')  # 키 변경
+cred = credentials.Certificate('./key/Firebase_Realtime_DB_key.json')  # 키 변경
 
 firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://chicktrack-4ee59-default-rtdb.firebaseio.com/'    # URL 변경
+    'databaseURL': 'Firebase_Realtime_DB_url'    # URL 변경
 })
 
 ref = db.reference('/')
