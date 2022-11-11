@@ -65,3 +65,7 @@ Xcode 13.2.1  환경에서 구축하였으며 추가적으로 [iosDeviceSupport]
 pushbullet_python의 main.py가 자동응답 봇의 역할을 수행합니다.</br></br>
 ![image](https://user-images.githubusercontent.com/101806955/201338365-83d5938f-36e6-4452-b08c-4e8cccf973e1.png)
 
+### 한계
+- 객체 탐지 성능
+</br>
+> 학습 데이터 부족으로 다양한 종의 닭을 인식하지 못합니다.
