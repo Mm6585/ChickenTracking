@@ -2,7 +2,7 @@ from pushbullet import Pushbullet
 import db
 from datetime import datetime
 
-api_key = 'o.Us9crOXIPVZyMoVRVtAwGwjW6R4yeLhc'
+api_key = 'Pushbullet_API_key'
 pb = Pushbullet(api_key)
 
 introduce = '''
@@ -12,7 +12,7 @@ If you want to know how to use this service,
 please type "!help".
 
 If you want to contact me,
-send me an e-mail to "mmj6585@gmail.com".
+send me an e-mail to "email".
 '''
 
 help = '''
@@ -45,7 +45,7 @@ def listen_pushes():
                 elif ('!help' in push['body']):
                     push_help(push)
                 elif (('!subscribe' in push['body']) and \
-                    (push['sender_email'] != '20172608@edu.hanbat.ac.kr')):
+                    (push['sender_email'] != 'service_email')):
                     add_user(push)
 
         if (len(pushes) > 10):
