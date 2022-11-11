@@ -1,7 +1,8 @@
 from pushbullet import Pushbullet
 import db
+from datetime import datetime
 
-api_key = 'Pushbullet_API_key'
+api_key = 'o.Us9crOXIPVZyMoVRVtAwGwjW6R4yeLhc'
 pb = Pushbullet(api_key)
 
 introduce = '''
@@ -15,13 +16,26 @@ send me an e-mail to "mmj6585@gmail.com".
 '''
 
 help = '''
+Your Pushbullet name must be in english
+
 !subscribe
 Send you notification about daily result.
+
 !
 '''
 
 def listen_pushes():
+    pushed_daily_data = False
+
     while(True):
+        now = str(datetime.now()).split(' ')[1].split('.')[0][:-3]
+
+        if ((not pushed_daily_data) and (now == '09:00')):
+            push_daily_data()
+            pushed_daily_data = True
+        elif(now == '00:00'):
+            pushed_daily_data = False
+
         pushes = pb.get_pushes()
 
         for push in pushes:
@@ -30,7 +44,8 @@ def listen_pushes():
                     push_first(push)
                 elif ('!help' in push['body']):
                     push_help(push)
-                elif (('!subscribe' in push['body']) and (push['sender_email'] != '20172608@edu.hanbat.ac.kr')):
+                elif (('!subscribe' in push['body']) and \
+                    (push['sender_email'] != '20172608@edu.hanbat.ac.kr')):
                     add_user(push)
 
         if (len(pushes) > 10):
@@ -68,6 +83,35 @@ def add_user(push):
 def delete_pushes():
     pb.delete_pushes()
     pb.push_note('','',email='20172608@edu.hanbat.ac.kr')
+
+def push_daily_data():
+    users_data = db.get_users_data()
+    track_data = db.get_tracking_data()
+    today = str(datetime.now()).split(' ')[0].replace('-', '')
+
+    if (len(track_data) > 0):
+        for user in track_data:
+            user_email = users_data[user]['email']
+            today_aoa = track_data[user][today]['aoa']
+            if (len(track_data) >= 7):
+                week = list(track_data[user])[-7:]
+            else:
+                week = track_data[user]
+
+            s = 0
+            for day in week:
+                s += float(week[day]['aoa'])
+            m = s / len(week)
+            today_ratio = today_aoa / m
+            
+            body = 'Average daily amount of activity : %s \
+                \n\nRatio with the weekly average : %s%%' \
+                % (round(today_aoa, 3), round(today_ratio, 2)*100)
+            body = str(body)
+
+            push_daily = pb.push_note(title='Daily Notification', body=body, email=user_email)
+
+            pb.delete_push(push_daily.get('iden'))
 
 if __name__ == '__main__':
     delete_pushes()
