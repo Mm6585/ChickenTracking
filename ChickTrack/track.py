@@ -13,6 +13,7 @@ import numpy as np
 from pathlib import Path
 import torch
 import torch.backends.cudnn as cudnn
+from db import DB
 
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]  # yolov5 strongsort root directory
@@ -72,7 +73,8 @@ def run(
         dnn=False,  # use OpenCV DNN for ONNX inference
         user_id='', ###
 ):
-
+    
+        
     source = str(source)
     save_img = not nosave and not source.endswith('.txt')  # save inference images
     is_file = Path(source).suffix[1:] in (VID_FORMATS)
@@ -97,7 +99,7 @@ def run(
     model = DetectMultiBackend(yolo_weights, device=device, dnn=dnn, data=None, fp16=half)
     stride, names, pt = model.stride, model.names, model.pt
     imgsz = check_img_size(imgsz, s=stride)  # check image size
-
+    #
     # Dataloader
     if webcam:
 #         show_vid = check_imshow()
@@ -291,6 +293,7 @@ def parse_opt():
     parser.add_argument('--save-vid', action='store_true', default=True, help='save video tracking results')
     parser.add_argument('--nosave', action='store_true', help='do not save images/videos')
     parser.add_argument('--user-id', type=str, help='User\'s id')       ###
+    # parser.add_argument('--reset', type=bool, default=False ,help='reset_DB')       ###
     # class 0 is person, 1 is bycicle, 2 is car... 79 is oven
     parser.add_argument('--classes', nargs='+', type=int, help='filter by class: --classes 0, or --classes 0 2 3')
     parser.add_argument('--agnostic-nms', action='store_true', help='class-agnostic NMS')

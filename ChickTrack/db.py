@@ -8,11 +8,11 @@ from measure_dist import measure_dist
 class DB:
     def __init__(self, user_id):
         # Fetch the service account key JSON file contents
-        cred = credentials.Certificate('./key/Firebase_Realtime_DB_key.json')  # 키 변경
+        cred = credentials.Certificate('/Users/kimgyujin/Desktop/ChickenTracking/ChickTrack/key/Firebase_Realtime_Database_key.json')  # 키 변경
 
         # Initialize the app with a service account, granting admin privileges
         firebase_admin.initialize_app(cred, {
-            'databaseURL': 'Firebase_Realtime_DB_url'    # URL 변경
+            'databaseURL': 'https://chicktrack-4ee59-default-rtdb.firebaseio.com/'    # URL 변경
         })
 
         # As an admin, the app has access to read and write all data, regradless of Security Rules
@@ -22,6 +22,7 @@ class DB:
     def is_prev_None(self):
         prev_data = self.ref.child(self.today).get()
         if (prev_data != None):
+            # del prev_data
             del prev_data['aoa']
             if (len(prev_data) == 0):
                 return True, None
@@ -59,8 +60,15 @@ class DB:
         if (is_prev_none):
             self.ref.child(self.today).set(data)
         else:
+            
             self.ref.child(self.today).update(data)
         self.ref.child(self.today).child('aoa').set(aoa)
+        
+    def  del_db(self):
+        data = self.ref.child(self.today)
+        data.delete()
+        
+        
 
     def cal_avg_aoa(self):
         data = self.ref.child(self.today).get()
